@@ -345,8 +345,8 @@ Requested by : {message.from_user.mention}</b>"""
 ├⋟ ✅ sᴜᴄᴄᴇsғᴜʟʟʏ sᴀᴠᴇᴅ ᴛᴏ ᴅᴀᴛᴀʙᴀsᴇ! ⋟ <code>{}</code>
 ├⋟ 👬 ᴅᴜᴘʟɪᴄᴀᴛᴇ ғɪʟᴇs sᴋɪᴘᴘᴇᴅ ⋟ <code>{}</code>
 ├⋟ 🤷 ᴅᴇʟᴇᴛᴇᴅ ᴍᴇssᴀɢᴇs sᴋɪᴘᴘᴇᴅ ⋟ <code>{}</code>
-├⋟ 🤦‍♀️ ɴᴏɴ-ᴍᴇᴅɪᴀ ᴍᴇssᴀɢᴇs sᴋɪᴘᴘᴇᴅ ⋟ <code>{no_media + unsupported}</code>
-├⋟ 🙄 ᴜɴsᴜᴘᴘᴏʀᴛᴇᴅ ᴍᴇᴅɪᴀ ⋟ <code>{Unsupported}</code>
+├⋟ 🤦‍♀️ ɴᴏɴ-ᴍᴇᴅɪᴀ ᴍᴇssᴀɢᴇs sᴋɪᴘᴘᴇᴅ ⋟ <code>{}</code>
+├⋟ 🙄 ᴜɴsᴜᴘᴘᴏʀᴛᴇᴅ ᴍᴇᴅɪᴀ ⋟ <code>{}</code>
 ├⋟ 😭 ᴇʀʀᴏʀs ᴏᴄᴄᴜʀʀᴇᴅ ⋟ <code>{errors}</code>
 ├⋟ 📽️ ᴜsᴇᴅ sᴛᴏʀᴀɢᴇ ⋟ <code>{}</code>
 ├⋟ 🏷️ ꜰʀᴇᴇ sᴛᴏʀᴀɢᴇ ⋟ <code>{}</code>
