@@ -144,7 +144,7 @@ async def index_files_to_db(lst_msg_id, chat, msg, bot):
             temp.CANCEL = False
             async for message in bot.iter_messages(chat, lst_msg_id, temp.CURRENT):
                 if temp.CANCEL:
-                    await msg.edit_text(script.CANCELED.format(total_users, current, duplicate, deleted, no_media + unsupported, unsupported, errors,total_files,t_free,t_size, uptime, ram, cpu ))
+                    await msg.edit_text(script.CANCELED.format(total_users, current, duplicate, deleted, no_media + unsupported, unsupported, errors,total_files,t_size,t_free, uptime, ram, cpu ))
                     break
                 total_users = await db.total_users_count()
                 totl_chats = await db.total_chat_count()
@@ -159,8 +159,8 @@ async def index_files_to_db(lst_msg_id, chat, msg, bot):
                 free2 = 536870912 - size2
                 size2 = get_size(size2)
                 free2 = get_size(free2)
-                t_free= free+free2
-                t_size= size+size2
+                t_free= free,free2
+                t_size= size,size2
                 uptime = get_readable_time(time() - botStartTime)
                 ram = psutil.virtual_memory().percent
                 cpu = psutil.cpu_percent()
@@ -168,7 +168,7 @@ async def index_files_to_db(lst_msg_id, chat, msg, bot):
                 if current % 80 == 0:
                     can = [[InlineKeyboardButton('Cancel', callback_data='index_cancel')]]
                     reply = InlineKeyboardMarkup(can)
-                    await msg.edit_text(script.FETCH_TXT.format(total_users, current, duplicate, deleted, no_media + unsupported, unsupported, errors,total_files,t_free,t_size, uptime, ram, cpu ),
+                    await msg.edit_text(script.FETCH_TXT.format(total_users, current, duplicate, deleted, no_media + unsupported, unsupported, errors,total_files,t_size,t_free, uptime, ram, cpu ),
                     reply_markup=reply)
                 if message.empty:
                     deleted += 1
@@ -196,5 +196,5 @@ async def index_files_to_db(lst_msg_id, chat, msg, bot):
             logger.exception(e)
             await msg.edit(f'Error: {e}')
         else:
-            await msg.edit(script.SAVED.format(total_users, total_files, duplicate, deleted, no_media + unsupported, unsupported, errors,t_free,t_size, uptime, ram, cpu ))
+            await msg.edit(script.SAVED.format(total_users, total_files, duplicate, deleted, no_media + unsupported, unsupported, errors,t_size,t_free, uptime, ram, cpu ))
 
