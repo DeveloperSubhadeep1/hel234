@@ -347,7 +347,7 @@ Requested by : {message.from_user.mention}</b>"""
 ├⋟ 🤷 ᴅᴇʟᴇᴛᴇᴅ ᴍᴇssᴀɢᴇs sᴋɪᴘᴘᴇᴅ ⋟ <code>{}</code>
 ├⋟ 🤦‍♀️ ɴᴏɴ-ᴍᴇᴅɪᴀ ᴍᴇssᴀɢᴇs sᴋɪᴘᴘᴇᴅ ⋟ <code>{}</code>
 ├⋟ 🙄 ᴜɴsᴜᴘᴘᴏʀᴛᴇᴅ ᴍᴇᴅɪᴀ ⋟ <code>{}</code>
-├⋟ 😭 ᴇʀʀᴏʀs ᴏᴄᴄᴜʀʀᴇᴅ ⋟ <code>{errors}</code>
+├⋟ 😭 ᴇʀʀᴏʀs ᴏᴄᴄᴜʀʀᴇᴅ ⋟ <code>{}</code>
 ├⋟ 📽️ ᴜsᴇᴅ sᴛᴏʀᴀɢᴇ ⋟ <code>{}</code>
 ├⋟ 🏷️ ꜰʀᴇᴇ sᴛᴏʀᴀɢᴇ ⋟ <code>{}</code>
 │
