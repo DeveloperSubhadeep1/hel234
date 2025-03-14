@@ -342,9 +342,9 @@ Requested by : {message.from_user.mention}</b>"""
 │
 ├⋟ Successfully Cancelled!!
 ├⋟ 🕵️ ᴀʟʟ ᴜsᴇʀs ⋟ <code>{}</code>
-├⋟ ✅ sᴜᴄᴄᴇsғᴜʟʟʏ sᴀᴠᴇᴅ ᴛᴏ ᴅᴀᴛᴀʙᴀsᴇ! ⋟ <code>{total_files}</code>
-├⋟ 👬 ᴅᴜᴘʟɪᴄᴀᴛᴇ ғɪʟᴇs sᴋɪᴘᴘᴇᴅ ⋟ <code>{duplicate}</code>
-├⋟ 🤷 ᴅᴇʟᴇᴛᴇᴅ ᴍᴇssᴀɢᴇs sᴋɪᴘᴘᴇᴅ ⋟ <code>{deleted}</code>
+├⋟ ✅ sᴜᴄᴄᴇsғᴜʟʟʏ sᴀᴠᴇᴅ ᴛᴏ ᴅᴀᴛᴀʙᴀsᴇ! ⋟ <code>{}</code>
+├⋟ 👬 ᴅᴜᴘʟɪᴄᴀᴛᴇ ғɪʟᴇs sᴋɪᴘᴘᴇᴅ ⋟ <code>{}</code>
+├⋟ 🤷 ᴅᴇʟᴇᴛᴇᴅ ᴍᴇssᴀɢᴇs sᴋɪᴘᴘᴇᴅ ⋟ <code>{}</code>
 ├⋟ 🤦‍♀️ ɴᴏɴ-ᴍᴇᴅɪᴀ ᴍᴇssᴀɢᴇs sᴋɪᴘᴘᴇᴅ ⋟ <code>{no_media + unsupported}</code>
 ├⋟ 🙄 ᴜɴsᴜᴘᴘᴏʀᴛᴇᴅ ᴍᴇᴅɪᴀ ⋟ <code>{Unsupported}</code>
 ├⋟ 😭 ᴇʀʀᴏʀs ᴏᴄᴄᴜʀʀᴇᴅ ⋟ <code>{errors}</code>
