@@ -1532,3 +1532,36 @@ async def confirmation_handler(client, callback_query):
 
 
 
+                    # ====================
+                    # |End of the my Code| 
+                    # ====================
+
+@Client.on_message(filters.command("sendall_mode") & filters.user(ADMINS))
+async def set_sendall_mode(client, message):
+    """Command to set the 'Send All' button mode."""
+    try:
+        option = message.text.split(" ", 1)[1].strip().lower()
+        if option not in ['on', 'off', 'true', 'false']:
+            raise ValueError
+        # 'on' means the feature is for premium users only
+        is_premium_only_mode = option in ['on', 'true']
+    except (IndexError, ValueError):
+        await message.reply_text("<b>💔 Invalid option. Please use '/sendall_mode on' or '/sendall_mode off'.</b>")
+        return
+
+    try:
+        # Note: You need to implement 'update_sendall_mode' in your config_db.py
+        await mdb.update_sendall_mode(is_premium_only_mode)
+        
+        response_text = (
+            "<b>✅ 'Send All' button mode set to ON.\nOnly premium users can now use it.</b>" if is_premium_only_mode
+            else "<b>✅ 'Send All' button mode set to OFF.\nAll users can now use it.</b>"
+        )
+        await message.reply_text(response_text)
+    except Exception as e:
+        logger.error(f"Error in set_sendall_mode: {e}")
+        await message.reply_text(f"<b>❗️ An error occurred while setting the mode.</b>")
+
+                    # ====================
+                    # |End of the my Code| 
+                    # ====================
