@@ -37,6 +37,36 @@ class Database:
     async def delete_all_messages(self):
         await self.col.delete_many({})
 
+    # def create_configuration_data(
+    #         self, maintenance_mode=False,
+    #         auto_accept=True,
+    #         one_link=True,
+    #         one_link_one_file_group=False,
+    #         private_filter=True,
+    #         group_filter=True,
+    #         terms=True,
+    #         spoll_check=True,
+    #         forcesub=True,
+    #         shortner=None,
+    #         no_ads=False,
+    #         advertisement=None):
+        
+    #     return {
+    #         'maintenance_mode': maintenance_mode,
+    #         'auto_accept': auto_accept,
+    #         'one_link': one_link,
+    #         'one_link_one_file_group': one_link_one_file_group,
+    #         'private_filter': private_filter,
+    #         'group_filter': group_filter,
+    #         'terms': terms,
+    #         'spoll_check': spoll_check,
+    #         'forcesub': forcesub,
+    #         'shortner': shortner,
+    #         'no_ads': no_ads,
+    #         'advertisement': advertisement,
+    #     }
+
+        # Find this method in your file and add the new parameter
     def create_configuration_data(
             self, maintenance_mode=False,
             auto_accept=True,
@@ -47,6 +77,7 @@ class Database:
             terms=True,
             spoll_check=True,
             forcesub=True,
+            sendall_premium_only=True,  # Add this line
             shortner=None,
             no_ads=False,
             advertisement=None):
@@ -61,11 +92,32 @@ class Database:
             'terms': terms,
             'spoll_check': spoll_check,
             'forcesub': forcesub,
+            'sendall_premium_only': sendall_premium_only,  # And also add this line
             'shortner': shortner,
             'no_ads': no_ads,
             'advertisement': advertisement,
         }
     
+
+
+                # ======================
+                # |start of the my Code|
+                # ======================
+
+
+    # Add these two new methods inside the Database class
+
+    async def update_sendall_mode(self, status: bool):
+        """Saves the status of the sendall mode to the database."""
+        await self.update_configuration('sendall_premium_only', status)
+
+    async def get_sendall_mode(self) -> bool:
+        """Gets the status of sendall mode. Defaults to True if not set."""
+        return await self.get_configuration_value('sendall_premium_only')
+    
+                # ====================
+                # |End of the my Code|
+                # ====================
     
     async def update_advirtisment(self, ads_string=None, ads_name=None, expiry=None, impression=None):
         config = await self.config_col.find_one({})
