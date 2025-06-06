@@ -1126,25 +1126,75 @@ async def cb_handler(client: Client, query: CallbackQuery):
         except Exception as e:
             await query.answer(url=f"https://telegram.me/{temp.U_NAME}?start={ident}_{file_id}")
   
+    # elif query.data.startswith("sendfiles"):
+    #     clicked = query.from_user.id
+    #     ident, key = query.data.split("#")
+    #     pre_user = await db.has_premium_access(clicked)
+    #     settings = await get_settings(query.message.chat.id)
+    #     try:
+    #         if settings.get('is_shortlink') and not pre_user:
+    #             await query.answer(url=f"https://telegram.me/{temp.U_NAME}?start=sendfiles1_{key}")
+    #             return
+    #         else:
+    #             await query.answer(url=f"https://telegram.me/{temp.U_NAME}?start=allfiles_{key}")
+    #             return
+    #     except UserIsBlocked:
+    #         await query.answer('Uɴʙʟᴏᴄᴋ ᴛʜᴇ ʙᴏᴛ ᴍᴀʜɴ !', show_alert=True)
+    #     except PeerIdInvalid:
+    #         await query.answer(url=f"https://telegram.me/{temp.U_NAME}?start=sendfiles3_{key}")
+    #     except Exception as e:
+    #         logger.exception(e)
+    #         await query.answer(url=f"https://telegram.me/{temp.U_NAME}?start=sendfiles4_{key}")
+
+
+
     elif query.data.startswith("sendfiles"):
         clicked = query.from_user.id
-        ident, key = query.data.split("#")
-        pre_user = await db.has_premium_access(clicked)
-        settings = await get_settings(query.message.chat.id)
-        try:
-            if settings.get('is_shortlink') and not pre_user:
-                await query.answer(url=f"https://telegram.me/{temp.U_NAME}?start=sendfiles1_{key}")
-                return
+        _, key = query.data.split("#")
+
+        # Note: You need to implement 'get_sendall_mode' in your config_db.py
+        # This should return True if mode is 'on' (premium only), and False otherwise.
+        # Defaulting to True (premium only) if not set.
+        is_premium_only = await mdb.get_sendall_mode() 
+
+        # If the mode is ON, check for premium status
+        if is_premium_only:
+            is_premium = await db.has_premium_access(clicked)
+            is_admin = clicked in ADMINS
+
+            if is_admin or is_premium:
+                # User is authorized, proceed to send files
+                try:
+                    await query.answer(url=f"https://telegram.me/{temp.U_NAME}?start=allfiles_{key}")
+                    return
+                except UserIsBlocked:
+                    await query.answer('Uɴʙʟᴏᴄᴋ ᴛʜᴇ ʙᴏᴛ ᴍᴀʜɴ !', show_alert=True)
+                except Exception as e:
+                    logger.exception(e)
+                    await query.answer("An error occurred.", show_alert=True)
             else:
+                # User is not premium, show error message
+                await query.answer(f"😭 ʜᴇʏ ʙʀᴏ ᴛʜɪꜱ ɪꜱ ᴏɴʟʏ ꜰᴏʀ\nᴘʀᴇᴍɪᴜᴍ ᴜꜱᴇʀꜱ ᴏɴʟʏ\nɢᴇᴛ ᴘʟᴀɴ ʙʏ /ᴘʟᴀɴ ᴄᴏᴍᴍᴀɴᴅ😭", show_alert=True)
+        
+        # If the mode is OFF, all users can use it
+        else:
+            try:
                 await query.answer(url=f"https://telegram.me/{temp.U_NAME}?start=allfiles_{key}")
                 return
-        except UserIsBlocked:
-            await query.answer('Uɴʙʟᴏᴄᴋ ᴛʜᴇ ʙᴏᴛ ᴍᴀʜɴ !', show_alert=True)
-        except PeerIdInvalid:
-            await query.answer(url=f"https://telegram.me/{temp.U_NAME}?start=sendfiles3_{key}")
-        except Exception as e:
-            logger.exception(e)
-            await query.answer(url=f"https://telegram.me/{temp.U_NAME}?start=sendfiles4_{key}")
+            except UserIsBlocked:
+                await query.answer('Uɴʙʟᴏᴄᴋ ᴛʜᴇ ʙᴏᴛ ᴍᴀʜɴ !', show_alert=True)
+            except Exception as e:
+                logger.exception(e)
+                await query.answer("An error occurred.", show_alert=True)
+
+
+                    # ====================
+                    # |my  code  end     | 
+                    # ====================
+
+
+
+    
     
 
     elif query.data.startswith("del"):
